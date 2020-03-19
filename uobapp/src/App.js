@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 
 import RegForm from "./Form";
+import Users from "./Users";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
     <div className="App">
       <h2>User Registration</h2>
        <RegForm addUser={addUserHandler}/>
+       <Users user={user} />
     </div>
   );
 }

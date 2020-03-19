@@ -39,6 +39,7 @@ export default withFormik({
       }
 })(RegForm);
 
+
 // Name
 // - [ ] Email
 // - [ ] Password
