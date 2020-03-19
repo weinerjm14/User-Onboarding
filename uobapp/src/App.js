@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
+import RegForm from "./Form";
+
 function App() {
+
+  const [user, setUser] = useState([
+    {
+         username: 'weinerjm',
+         password: 'xyz123',
+         email: 'me@me.com',
+         tos: 'yes',
+    }
+  ])
+
+  const addUserHandler = newUser => {
+    setUser([...user, newUser]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>User Registration</h2>
+       <RegForm addUser={addUserHandler}/>
     </div>
   );
 }
