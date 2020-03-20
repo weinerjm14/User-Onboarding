@@ -17,7 +17,7 @@ const RegForm = props => {
                 <span className="error">{props.errors.email}</span>
               ) : null}<br />
             <label htmlFor="password">Password: </label>
-            <Field name="password" placeholder="Enter Password" /><br/>
+            <Field type="password" name="password" placeholder="Enter Password" /><br/>
             {props.touched.password && props.errors.password ? (
                 <span className="error">{props.errors.password}</span>
               ) : null}<br />
@@ -48,14 +48,13 @@ export default withFormik({
         console.log("values", values);
         console.log("bag", formikBag);
         formikBag.props.addUser({
-          ...values,
-          id: Date.now()
+          ...values
         });
         axios.post('https://reqres.in/api/users', values)
           .then( response =>
             {
               console.log(response.data)
-              addUser(response.data)
+              addUser([response.data])
             }
           )
           .catch(error => {
