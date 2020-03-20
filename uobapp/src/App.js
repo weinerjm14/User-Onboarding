@@ -12,6 +12,7 @@ function App() {
          password: 'xyz123',
          email: 'me@me.com',
          tos: 'yes',
+         id: 1
     }
   ])
 

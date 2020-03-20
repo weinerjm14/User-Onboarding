@@ -2,16 +2,18 @@ import React from "react";
 
 const Users = props => {
     return (
+        <div>
         {props.user.map(user =>(
             <div className='userlist'>
-            <h3>'User Name :' {user.username}</h3>
-            <span className = "id">'User ID:' {user.id}</span>>
-            <span className="email">'Email: ' {user.email}</span>
-            <span className="password">'Password:' {user.password}</span>
-            <span className='tos'>'Terms of Service: ' {user.tos}</span>
+            <h3>User Name : {user.username}</h3>
+            <p className = "id">User ID: {user.id}</p>
+            <p className="email">Email: {user.email}</p>
+            <p className="password">Password: {user.password}</p>
+            <p className='tos'>Terms of Service: {user.tos}</p>
             </div>
         )
         )}
+        </div>
     );
 };
 
