@@ -1,6 +1,7 @@
 import React from 'react';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 const RegForm = props => {
     return(
@@ -25,7 +26,11 @@ const RegForm = props => {
             {props.touched.tos && props.errors.tos ? (
                 <span className="error">{props.errors.tos}</span>
               ) : null}<br />
-            <button type="submit">Register</button>
+            <button type="submit" disabled= {props.isSubmitting}>
+              {
+                props.isSubmitting ? "Working" : "Register"
+              }  
+            </button>
         </Form>
     )
 };
@@ -39,13 +44,24 @@ export default withFormik({
           tos: props.tos || false
         };
       },
-      handleSubmit: (values, formikBag) => {
+      handleSubmit: (values, formikBag, addUser) => {
         console.log("values", values);
         console.log("bag", formikBag);
         formikBag.props.addUser({
           ...values,
           id: Date.now()
         });
+        axios.post('https://reqres.in/api/users', values)
+          .then( response =>
+            {
+              console.log(response.data)
+              addUser(response.data)
+            }
+          )
+          .catch(error => {
+            console.log("errors:", error)
+          });
+       
         formikBag.setStatus("form submitting");
         formikBag.resetForm();
       },
